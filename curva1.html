@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8">
+  <h1>Diagramma Ferro-Carbonio Interattivo</h1>
+  <h2>Prof. Giuseppe Salerno</h2>
+  <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+</head>
+<body>
+  <h3>Diagramma Ferro-Carbonio per imparare a leggere i valori dal grafico interattivo</h3>
+
+<h4 style="color: red;"> Curva 1 </h4>
+<h4 style="color: blue;"> Curva 2 </h4>
+  <div id="grafico" style="width:100%;max-width:900px;height:600px;"></div>
+
+  <script>
+    // Composizione in % (curva 1)
+    var Carbonio1 = [0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8]; // 
+    
+    var Carbonio2 = [0.8,0.9,0.94,1.1,1.2,1.3,1.4,1.59,1.6,1.7,1.75,1.8,1.87,1.90,1.95,2.0];// 
+
+    // Curve Lega Fe-C
+    var curva1 = [911, 880, 850, 820, 800, 769, 750, 730, 723]; // Curva 1
+    var curva2 = [723, 780, 800, 840, 865, 890, 920, 980, 985, 1020, 1050, 1070, 1095, 1110, 1160, 1180]; // Curva 2
+
+    
+
+    // Tracce Plotly
+    var traceSinistra = {
+      x: Carbonio1,
+      y: curva1,
+      mode: 'lines+markers',
+      name: 'Curva 1',
+      line: {color: 'red', width: 3}
+    };
+
+    var traceDestra = {
+      x: Carbonio2,
+      y: curva2,
+      mode: 'lines+markers',
+      name: 'Curva 2',
+      line: {color: 'blue', width: 3}
+    };
+
+    var traceFineTrasformazione = {
+      x: [0,2], // da 0% a 100% per linea orizzontale
+      y: [723, 723],
+      mode: 'lines',
+      name: 'T Fine trasformazione',
+      line: {color: 'green', width: 3, dash: 'dash'}
+    };
+
+ var traceInizioTrasformazione = {
+      x: [0, 60], // da 0% a 100% per linea orizzontale
+      y: [1000, 1000],
+      mode: 'lines',
+      name: 'T Inizio trasformazione',
+      line: {color: 'green', width: 3, dash: 'dash'}
+    };
+
+
+var traceFineTrasformazione2 = {
+      x: [0, 60], // da 0% a 100% per linea orizzontale
+      y: [900, 900],
+      mode: 'lines',
+      name: 'T Fine trasformazione',
+      line: {color: 'violet', width: 3, dash: 'dash'}
+    };
+
+ var traceInizioTrasformazione2 = {
+      x: [0, 60], // da 0% a 100% per linea orizzontale
+      y: [1080, 1080],
+      mode: 'lines',
+      name: 'T Inizio trasformazione',
+      line: {color: 'violet', width: 3, dash: 'dash'}
+    };
+
+    var layout = {
+      title: 'Diagramma Temperatura % Carbonio',
+      xaxis: {title: 'Percentuale in Carbonio (%)'},
+      yaxis: {title: 'Temperatura del Metallo Fuso (°C)'}
+    };
+
+    Plotly.newPlot('grafico', [traceSinistra,traceDestra,traceFineTrasformazione], layout);
+  </script>
+</body>
+</html>
